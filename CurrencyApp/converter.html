@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<nav class="navbar">
+  <div class="logo">
+  <img src="logo.png" alt="Logo">
+  <span>CurrencyApp</span>
+</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="converter.html">Convert</a></li>
+    <li><a href="history.html">History</a></li>
+    <li><a href="settings.html">Settings</a></li>
+  </ul>
+</nav>
+
+
+   <div class="container">
+    <h2> Convert Currency</h2>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <select id="fromCurrency">
+        <option value="USD">🇺🇸 USD</option>
+        <option value="RWF">🇷🇼 RWF</option>
+        <option value="EUR">🇪🇺 EUR</option>
+    </select>
+
+    <button onclick="swap()">🔁 Swap</button>
+
+    <select id="toCurrency">
+        <option value="RWF">🇷🇼 RWF</option>
+        <option value="USD">🇺🇸 USD</option>
+        <option value="EUR">🇪🇺 EUR</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <h3 id="output"></h3>
+    <p id="rate"></p>
+    <p id="time"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

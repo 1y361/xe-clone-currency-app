@@ -1,0 +1,582 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #eef2f5;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #0b5e42;
+    color: white;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+}
+
+.logo p {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.tagline {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    display: block;
+    margin-top: 5px;
+}
+
+.nav-menu {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 10px;
+    display: block;
+}
+
+.nav-item.active {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.queue-info {
+    margin-top: auto;
+    padding: 15px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #f8fafc;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.mode-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.mode-btn {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #e2e8f0;
+}
+
+.mode-btn.active {
+    background: #0b5e42;
+    color: white;
+}
+
+.mode-status {
+    padding: 8px 24px;
+    font-size: 0.8rem;
+}
+
+.online-status {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.offline-status {
+    background: #fed7aa;
+    color: #9a3412;
+}
+
+.time {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/* Pages */
+.page {
+    display: none;
+    padding: 24px;
+}
+
+.page.active {
+    display: block;
+}
+
+.page h2 {
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+.page h3 {
+    margin: 20px 0 12px 0;
+    color: #0b5e42;
+}
+
+/* ============================================ */
+/* 3-CLICK RULE STYLES */
+/* ============================================ */
+
+/* Steps Indicator */
+.steps-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    background: #f1f5f9;
+    padding: 15px 20px;
+    border-radius: 60px;
+    flex-wrap: wrap;
+}
+
+.step {
+    background: white;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    color: #94a3b8;
+    border: 1px solid #e2e8f0;
+}
+
+.step.active {
+    background: #0b5e42;
+    color: white;
+    border-color: #0b5e42;
+    box-shadow: 0 2px 8px rgba(11, 94, 66, 0.3);
+}
+
+.step.completed {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #166534;
+}
+
+.step-arrow {
+    font-size: 1.2rem;
+    color: #0b5e42;
+}
+
+/* Start Section */
+.start-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 20px;
+    border: 2px dashed #cbd5e1;
+    margin-bottom: 24px;
+}
+
+.start-button {
+    background: linear-gradient(135deg, #0b5e42 0%, #0a4f38 100%);
+    color: white;
+    border: none;
+    padding: 16px 48px;
+    border-radius: 60px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(11, 94, 66, 0.3);
+}
+
+.start-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(11, 94, 66, 0.4);
+}
+
+.start-button:active {
+    transform: translateY(1px);
+}
+
+.start-hint {
+    margin-top: 12px;
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+/* Submit Button */
+.submit-button {
+    background: linear-gradient(135deg, #0b5e42 0%, #0a4f38 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.submit-button:hover {
+    background: linear-gradient(135deg, #0a4f38 0%, #08412e 100%);
+    transform: translateY(-2px);
+}
+
+/* Cancel Button */
+.cancel-button {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.cancel-button:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #dc2626;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Form Styles */
+.form-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 180px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.9rem;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #0b5e42;
+    box-shadow: 0 0 0 2px rgba(11, 94, 66, 0.1);
+}
+
+.checkbox-group {
+    margin: 16px 0;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Tables */
+.table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #f1f5f9;
+    color: #0b5e42;
+}
+
+/* Staff table input fields */
+.staff-name-input, .staff-role-input, .staff-contact-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.staff-name-input:focus, .staff-role-input:focus, .staff-contact-input:focus {
+    outline: none;
+    border-color: #0b5e42;
+}
+
+.save-staff-btn {
+    background: #0b5e42;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    margin-right: 5px;
+}
+
+.delete-staff-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.7rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+}
+
+.status-Waiting { background: #fef3c7; color: #d97706; }
+.status-Completed { background: #dcfce7; color: #166534; }
+
+/* Admin Stats */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.admin-stats div {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #e2e8f0;
+}
+
+.admin-stats span {
+    font-size: 1.5rem;
+    display: block;
+    margin-top: 8px;
+    color: #0b5e42;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #0b5e42;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #334155;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btn-add {
+    background: #0b5e42;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+/* Settings */
+.settings-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.settings-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.settings-card button {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.mode-select-btn {
+    background: #0b5e42;
+    color: white;
+}
+
+.note {
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Queue Items */
+#queueList div, #apptList div {
+    background: white;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+}
+
+.complete-btn {
+    background: #0b5e42;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    width: 350px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.modal-content button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    width: 100%;
+}
+
+#closeApptModal {
+    float: right;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+#searchInput {
+    padding: 8px;
+    width: 250px;
+    margin-right: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#msg {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#msg.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+#msg.error {
+    background: #fee2e2;
+    color: #991b1b;
+}

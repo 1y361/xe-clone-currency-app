@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+   <div class="logo">
+  <img src="logo.png" alt="Logo">
+  <span>CurrencyApp</span>
+</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="converter.html">Convert</a></li>
+    <li><a href="history.html">History</a></li>
+    <li><a href="settings.html">Settings</a></li>
+  </ul>
+</nav>
+
+<section class="container">
+    <h1> Currency Converter</h1>
+    <p>Fast & simple currency exchange</p>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <button onclick="quickConvert()">Convert Now</button>
+
+    <h3 id="result"></h3>
+
+    <br>
+    <a href="converter.html">
+        <button>Go to Full Converter →</button>
+    </a>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

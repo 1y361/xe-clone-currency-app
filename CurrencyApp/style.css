@@ -1,0 +1,162 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #335675, #146064);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CONTAINER */
+.container {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 20px;
+    width: 320px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+/* BUTTONS */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #ffffff;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #333;
+    color: white;
+}
+
+/* RESULT TEXT */
+h3 {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+/* CHART BOX */
+.chart {
+    background: rgba(255,255,255,0.3);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* DARK MODE */
+.dark {
+    background: #121212 !important;
+    color: white;
+}
+ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+li {
+    background: rgba(255,255,255,0.3);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+.setting-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.2);
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.setting-box label {
+    font-weight: bold;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2D89EF;
+  padding: 10px 20px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
