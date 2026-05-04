@@ -1,7 +1,3 @@
-// ============================================
-// RURALHEALTH CONNECT - 3-CLICK CHECK-IN FLOW
-// Click 1: Start → Click 2: Enter Details → Click 3: Submit
-// ============================================
 
 // Data - Start with EMPTY arrays
 let patients = [];
