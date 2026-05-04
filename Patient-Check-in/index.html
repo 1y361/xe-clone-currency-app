@@ -5,7 +5,229 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RHC | RuralHealth Connect</title>
     <link rel="stylesheet" href="style.css">
+</head><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RHC | RuralHealth Connect</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>RHC</h1>
+                <p>RuralHealth Connect</p>
+                <span class="tagline">Simple · Caring · Accessible</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="checkin">☑ Check-in</a>
+                <a href="#" class="nav-item" data-page="patients">👥 Patients</a>
+                <a href="#" class="nav-item" data-page="appointments">📅 Appointments</a>
+                <a href="#" class="nav-item" data-page="clinicadmin">🏥 Clinic Admin</a>
+                <a href="#" class="nav-item" data-page="settings">⚙ Settings</a>
+            </nav>
+            <div class="queue-info">
+                Queue: <span id="queueCount">0</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar with Mode Toggle -->
+            <div class="top-bar">
+                <div class="mode-toggle">
+                    <button id="onlineBtn" class="mode-btn active">🌐 Online Mode</button>
+                    <button id="offlineBtn" class="mode-btn">📡 Offline Mode</button>
+                </div>
+                <div class="time" id="liveTime"></div>
+            </div>
+            <div id="modeStatus" class="mode-status online-status">✅ Online Mode - Data saving to local storage</div>
+
+            <!-- Check-in Page -->
+            <div id="checkinPage" class="page active">
+                <h2>Patient Check-in</h2>
+                
+                <!-- 3-Click Rule Indicator -->
+                <div class="steps-indicator">
+                    <div class="step active" id="step1">1. Start</div>
+                    <div class="step-arrow">→</div>
+                    <div class="step" id="step2">2. Enter Details</div>
+                    <div class="step-arrow">→</div>
+                    <div class="step" id="step3">3. Submit</div>
+                </div>
+
+                <!-- START Button (Click 1) -->
+                <div id="startSection" class="start-section">
+                    <button id="startBtn" class="start-button">🚀 Start Check-in</button>
+                    <p class="start-hint">Click to begin the 3-step registration process</p>
+                </div>
+
+                <!-- Check-in Form (Hidden until Start is clicked) -->
+                <div id="checkinFormContainer" class="form-card" style="display: none;">
+                    <h3>Patient Registration Form</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="name" placeholder="Enter patient name">
+                        </div>
+                        <div class="form-group">
+                            <label>ID / Contact Number *</label>
+                            <input type="text" id="contact" placeholder="e.g., 0978345235674">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" id="age" placeholder="Age">
+                        </div>
+                        <div class="form-group">
+                            <label>Service Type</label>
+                            <select id="service">
+                                <option>General Consultation</option>
+                                <option>Emergency</option>
+                                <option>Vaccination</option>
+                                <option>Maternity</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="returning"> 🔄 Returning patient
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button id="checkinBtn" class="submit-button">✓ Submit Check-in</button>
+                        <button id="cancelBtn" class="cancel-button">✗ Cancel</button>
+                    </div>
+                    <div id="msg"></div>
+                </div>
+
+                <h3>Recent Registrations</h3>
+                <div class="table-wrapper">
+                    <table id="recentTable">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>ID</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Patients Page -->
+            <div id="patientsPage" class="page">
+                <h2>Patients Directory</h2>
+                <input type="text" id="searchInput" placeholder="Search by name or ID...">
+                <button id="searchBtn">Search</button>
+                <div class="table-wrapper">
+                    <table id="patientsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Age</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Appointments Page -->
+            <div id="appointmentsPage" class="page">
+                <h2>Queue & Appointments</h2>
+                <div id="queueList"></div>
+                <button id="newApptBtn" class="btn-add">+ New Appointment</button>
+                <div id="apptList"></div>
+            </div>
+
+            <!-- Clinic Admin Page -->
+            <div id="clinicadminPage" class="page">
+                <h2>🏥 Clinic Administration</h2>
+                
+                <!-- Stats Dashboard -->
+                <div class="admin-stats">
+                    <div>📊 Today: <span id="todayCount">0</span> patients</div>
+                    <div>⏳ Waiting: <span id="waitingCount">0</span></div>
+                    <div>✅ Completed: <span id="completedCount">0</span></div>
+                    <div>👨‍⚕️ Staff: <span id="staffCount">0</span></div>
+                </div>
+
+                <h3>Staff Management</h3>
+                <div class="table-wrapper">
+                    <table id="staffTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Contact</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staffBody"></tbody>
+                    </table>
+                </div>
+                <button id="addStaffRowBtn" class="btn-primary" style="margin-top: 12px;">+ Add New Staff</button>
+
+                <h3>🏥 Clinic Information</h3>
+                <div class="form-card">
+                    <input type="text" id="clinicName" placeholder="Clinic Name">
+                    <input type="text" id="clinicLocation" placeholder="Location">
+                    <input type="text" id="clinicPhone" placeholder="Phone Number">
+                    <button id="saveClinicBtn" class="btn-primary">Save Clinic Info</button>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settingsPage" class="page">
+                <h2>⚙ Settings</h2>
+                <div class="settings-card">
+                    <h3>Connection Mode</h3>
+                    <p>Current Mode: <strong id="currentModeDisplay">Online</strong></p>
+                    <p>Choose how you want to work:</p>
+                    <button id="settingsOnlineBtn" class="mode-select-btn">🌐 Work Online</button>
+                    <button id="settingsOfflineBtn" class="mode-select-btn">📡 Work Offline</button>
+                    <p class="note">* Both modes work the same. Offline saves data only on this device.</p>
+                </div>
+                <div class="settings-card">
+                    <h3>Data Management</h3>
+                    <button id="exportBtn" class="btn-secondary">📤 Export Data</button>
+                    <button id="clearBtn" class="btn-danger">🗑 Clear All Data</button>
+                </div>
+                <div class="settings-card">
+                    <h3>About</h3>
+                    <p>RuralHealth Connect v2.0</p>
+                    <p>Simple · Caring · Accessible</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Appointment -->
+    <div id="apptModal" class="modal">
+        <div class="modal-content">
+            <span id="closeApptModal">&times;</span>
+            <h3>📅 New Appointment</h3>
+            <input type="text" id="apptName" placeholder="Patient Name">
+            <input type="text" id="apptId" placeholder="Patient ID">
+            <input type="date" id="apptDate">
+            <input type="time" id="apptTime">
+            <button id="saveApptBtn" class="btn-primary">Schedule</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 <body>
     <div class="app">
         <!-- Sidebar -->
